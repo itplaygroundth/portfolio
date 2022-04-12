@@ -1,1 +1,1 @@
-JP Codeman, [Portfolio]('https://github.com/itplaygroundth/portfolio')
+JP Codeman, [Portfolio](https://github.com/itplaygroundth/portfolio)
