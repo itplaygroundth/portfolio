@@ -21,7 +21,7 @@ const Navabr =  () =>{
                 </Link>
             </div>
             <div className="flex-none">
-            <Link href='/about'>
+            <Link href='/profile'>
                 <a className="btn btn-ghost normal-case text-xl">About</a>
             </Link>
             <Link href='/portfolio'>

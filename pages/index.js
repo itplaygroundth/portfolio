@@ -1,11 +1,24 @@
+import { useSession,signIn,signOut } from "next-auth/react";
+import AccessDenied from "../components/accessDenied";
+import Layout from "../components/layout";
 
+const IndexPage = ()=> {
+  const { data: session, status } = useSession()
+  if (status === "authenticated") {
+    return <>
+    <p>Signed in as {session.user.name}</p>
+    <button onClick={signOut}>Sign out</button>
+    </>
+  }
 
-export default function HomePage() {
   return (
     <>
-       <div className="p-10 bg-base-100 text-base-content h-full">
-         
-      </div> 
+      Not signed in <br />
+      <button onClick={() => signIn()}>Sign in</button>
     </>
-  );
+  )
 }
+
+ 
+
+export default IndexPage

@@ -2,7 +2,8 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Layout  from '../../components/layout'
 
-function Index() {
+function Index({state}) {
+  
   const styling = {
     backgroundImage: "url('https://api.lorem.space/image/fashion?w=1000&h=800')",
     width:"100%",
