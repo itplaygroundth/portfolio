@@ -1,17 +1,26 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import Layout  from '../../components/layout'
+import { useSession,getSession } from 'next-auth/react'
+import AccessDenied from '../../components/accessDenied'
 
-function Index({state}) {
+function Index() {
   
+  const {data:session} = useSession()
+
   const styling = {
     backgroundImage: "url('https://api.lorem.space/image/fashion?w=1000&h=800')",
     width:"100%",
     height:"100%"
   }
+
+  if (typeof window === "undefined") return null
+
+  if (session) {
+
   return (
     <>
-    
+    <Layout>
       <div className="hero min-h-screen" style={styling}>
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-center text-neutral-content">
@@ -22,8 +31,12 @@ function Index({state}) {
           </div>
         </div>
       </div>
+      </Layout>
     </>
   )
+  }
+  return <><AccessDenied /></>
 }
+
 
 export default Index

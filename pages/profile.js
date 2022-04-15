@@ -1,32 +1,33 @@
 import { useEffect,useState } from "react"
+import { useSession } from "next-auth/react"
 import Head from "next/head"
 import Image from "next/image"
+import { getServerSideProps } from "./portfolio"
+import AccessDenied from "../components/accessDenied"
+import Layout from "../components/layout"
 
 const Profile = () => {
 const [profile,setProfile] = useState({})
-// useEffect(async()=>{
-//     const liff = (await import('@line/liff')).default
-//     await liff.ready
-//     const profile = await liff.getProfile()
-//     setProfile(profile)
-// },[profile.userId])
+const {data:session} = useSession()
+
+if (typeof window === "undefined") return null
+
+if (session) {
 return (
-    <section>
-        <Head>
-            <title>My Profile</title>
-        </Head>
-        <h1>Profile</h1>
-        <div>
-            {profile.pictureUrl && <Image
-            src={profile.pictureUrl}
-            alt={profile.displayName}
+    <Layout>
+        <div class="min-h-screen flex justify-center items-center">
+            {session.user.image && <Image
+            src={session.user.image}
+            alt={session.user.name}
             width={500}
             height={500}
             />
         }
-        <div>Name: {profile.displayName}</div>
+        <div>Name: {session.user.name}</div>
         </div>
-    </section>
+    </Layout>
 )
+}
+return <><AccessDenied /></>
 }
 export default  Profile

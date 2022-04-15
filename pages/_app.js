@@ -1,10 +1,12 @@
 import { useEffect } from 'react';
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
 import {SessionProvider} from 'next-auth/react'
 import { ThemeProvider } from 'next-themes'
 import Layout from '../components/layout'
 //import { useLiff } from 'use-between';
 
-
+config.autoAddCss = false;
 const liffid = process.env.NEXT_PUBLIC_LIFF_ID
 
 
